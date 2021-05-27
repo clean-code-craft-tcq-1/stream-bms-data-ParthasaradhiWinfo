@@ -31,9 +31,7 @@ public class BatteryManagementSystem {
 					Thread.sleep(2000);
 					
 					System.out.println(batteryData);
-				} else {
-					break;
-				}
+				} 
 			}
 
 			return batteryData;
