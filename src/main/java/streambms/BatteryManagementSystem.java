@@ -25,11 +25,11 @@ public class BatteryManagementSystem {
 	public static String sentToConsole(BatteryResponse batteryResponse, boolean isConsumed) {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			String batteryData = "";
+			String batteryData = mapper.writeValueAsString(batteryResponse);
 			for (int i = 0; i <= 10; i++) {
-				if (!isConsumed || batteryData.isEmpty()) {
+				if (!isConsumed ) {
 					Thread.sleep(2000);
-					batteryData = mapper.writeValueAsString(batteryResponse);
+					
 					System.out.println(batteryData);
 				} else {
 					break;
