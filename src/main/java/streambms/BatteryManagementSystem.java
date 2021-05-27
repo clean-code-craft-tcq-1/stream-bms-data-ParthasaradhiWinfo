@@ -1,5 +1,6 @@
 package streambms;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import streambms.constant.BatteryConstant;
@@ -22,28 +23,31 @@ public class BatteryManagementSystem {
 		return new BatteryResponse(temperature, soc, chargeRate);
 	}
 
-	public static String sentToConsole(BatteryResponse batteryResponse, boolean isConsumed) {
+	public static void sendToReceiver(boolean isConsumed) {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			String batteryData = mapper.writeValueAsString(batteryResponse);
 			for (int i = 0; i <= 10; i++) {
-				if (!isConsumed ) {
-					Thread.sleep(2000);
-					
-					System.out.println(batteryData);
-				} 
+				sendToConsole(mapper.writeValueAsString(sendBatteryParameters(getBatteryParameters())), isConsumed);
 			}
-
-			return batteryData;
-
-		} catch (Exception e) {
+			
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+
 	}
 
-	public static String sendToReceiver(boolean isConsumed) {
-		return sentToConsole(sendBatteryParameters(getBatteryParameters()), isConsumed);
+	public static void sendToConsole(String batteryData, boolean isConsumed) {
+		if (!isConsumed) {
+			try {
+				Thread.sleep(2000);
+				System.out.println(batteryData);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
 
 	}
 

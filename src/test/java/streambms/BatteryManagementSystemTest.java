@@ -5,6 +5,8 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import streambms.response.BatteryResponse;
 
 public class BatteryManagementSystemTest {
@@ -25,15 +27,11 @@ public class BatteryManagementSystemTest {
 	
 	@Test
 	public void isConsumedFalse() {
-		String generatedValue = BatteryManagementSystem.sendToReceiver(false);
-		assertNotNull(generatedValue);
+		ObjectMapper mapper = new ObjectMapper();
+		 BatteryManagementSystem.sendToReceiver(false);
+		
 	}
 	
-	@Test
-	public void isConsumedTru() {
-		String generatedValue = BatteryManagementSystem.sendToReceiver(true);
-		assertNotNull(generatedValue);
-	}
 	
 	
 }
