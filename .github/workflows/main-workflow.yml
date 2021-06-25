@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jun 25 05:26:15 2021
-
-@author: VNO1COB
-"""
-# This workflow will build a Java project with Maven
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
 name: Build Run and Test
 
 on:
