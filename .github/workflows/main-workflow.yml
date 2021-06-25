@@ -43,7 +43,7 @@ jobs:
       run: |
     - name: Run and collect coverage
       run: |
-          coverage run --branch ./reciver/reciver.py
+          coverage run --branch ./Reciver/reciver.py
           coverage html
     - name: Upload coverage
       uses: actions/upload-artifact@v2
