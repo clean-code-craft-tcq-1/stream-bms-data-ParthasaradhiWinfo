@@ -30,6 +30,8 @@ jobs:
         path: ./target/site/jacoco
         retention-days: 1
     - uses: actions/setup-python@v2
-      with:
+    - name: Build main
+      run: mvn compile exec:java -Dexec.mainClass="streambms.BMSPublisher"
+    with:
         python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
-    - run: mvn compile exec:java -Dexec.mainClass="streambms.BMSPublisher" | python ./Reciver/reciver.py
+    - run: python ./Reciver/reciver.py
