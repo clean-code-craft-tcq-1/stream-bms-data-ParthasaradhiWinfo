@@ -7,12 +7,15 @@ Created on Thu Jun 24 02:25:37 2021
 import json
 
 def read_sender_inputs():
-    input_value = input()
-    input_dict = json.loads(input_value)
-    print(input_dict)
-    print(input_dict["temperature"])
-    print(input_dict["chargerate"])
-    return input_dict["temperature"],input_dict["chargerate"]  
+    try:
+        input_value = input()
+        input_dict = json.loads(input_value)
+        print(input_dict)
+        print(input_dict["temperature"])
+        print(input_dict["chargerate"])
+        return input_dict["temperature"],input_dict["chargerate"]
+    except EOFError:
+        return None,None  
 
 def average_of_input_list(list_of_input_readings):
     min_max_avg_list = []
