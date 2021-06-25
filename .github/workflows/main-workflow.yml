@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Jun 25 05:26:15 2021
+
+@author: VNO1COB
+"""
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
 name: Build Run and Test
 
 on:
@@ -18,7 +27,7 @@ jobs:
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
-       java-version: 1.8
+        java-version: 1.8
     - name: Build test
       run: mvn test
     - name: Build and Generate coverage
@@ -31,22 +40,3 @@ jobs:
         retention-days: 1
     - name: Build main
       run: mvn compile exec:java -Dexec.mainClass="streambms.BMSPublisher"
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-    - name: Build main
-      with:
-       python-version: '3.9'
-    - name: Install dependencies
-      run: |
-          python -m pip install --upgrade pip
-          pip install flake8
-          pip install coverage
-          pip install pyinstaller
-    - name: Lint with flake8
-      run: |
-          # stop the build if there are Python syntax errors or undefined names
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-          # exit-zero treats all errors as warnings.
-          flake8 . --count --exit-zero --max-line-length=80 --ignore=E111,E121,E126 --statistics
-    - name: Pipe run
-      run: ./SenderExec | python ./Reciver/receive.py
