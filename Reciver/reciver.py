@@ -13,6 +13,8 @@ class main():
     input_chargerate_list = []
     while True:
         temperature,chargerate=read_sender_inputs()
+        if temperature == None or charge_rate == None:
+            break
         input_temperature_list.append(temperature)
         input_chargerate_list.append(chargerate)
         average_dict = averagecalculation(input_temperature_list,input_chargerate_list)
