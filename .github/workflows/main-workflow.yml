@@ -31,4 +31,4 @@ jobs:
         retention-days: 1
     - uses: actions/setup-python@v2
     - name: Build main
-      run: mvn compile exec:java -Dexec.mainClass="streambms.BMSPublisher"
+      run: mvn compile exec:java -Dexec.mainClass="streambms.BMSPublisher" | ./Receiver/receive.py
